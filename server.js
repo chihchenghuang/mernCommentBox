@@ -1,6 +1,9 @@
 //server.js
 'use strict'
 
+// import .env file
+require('dotenv').config()
+
 //first we import our dependencies...
 var express = require('express');
 var mongoose = require('mongoose');
@@ -15,7 +18,7 @@ var router = express.Router();
 var port = process.env.API_PORT || 3001;
 
 //db config -- REPLACE USERNAME/PASSWORD/DATABASE WITH YOUR OWN FROM MLAB!
-var mongoDB = 'mongodb://<DBUSERNAME>:<DBPASSWORD>@ds019836.mlab.com:19836/bryandb';
+var mongoDB = process.env.DB_CONNECTION;
 mongoose.connect(mongoDB, { useMongoClient: true })
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
